@@ -1,0 +1,29 @@
+{
+  "name": "realwork",
+  "version": "1.0.0",
+  "description": "my real work",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RequireSun/RealWork.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RequireSun/RealWork/issues"
+  },
+  "homepage": "https://github.com/RequireSun/RealWork#readme",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
+    "gulp-live-server": "0.0.29",
+    "gulp-livereload": "^3.8.1",
+    "gulp-react": "^3.1.0",
+    "jquery": "^2.1.4",
+    "react": "^0.14.5",
+    "requirejs": "^2.1.22"
+  }
+}
