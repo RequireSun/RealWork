@@ -1,0 +1,104 @@
+html {
+  font-size: 100px;
+}
+
+body {
+  background: url('../images/bg_block.jpg') repeat center center;
+}
+
+html, body, #content, #content>div {
+  margin: 0;
+  padding: 0;
+
+  width:100%;
+  height: 100%;
+}
+
+.stage {
+  width: 100%;
+  height: 100%;
+
+  perspective: 4em;
+
+  .hexahedron {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -1em 0 0 -1em;
+
+    width: 2em;
+    height: 2em;
+
+    transform: translateZ(-1em);
+    transform-style: preserve-3d;
+    transform-origin: 1em 1em 0;    // 没时间计较那么多了 实在是不知道怎么算位置了
+
+    transition-property: transform;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+
+    &.front {
+      transform: rotateY(0deg);
+    }
+
+    &.back {
+      transform: rotateY(180deg);
+    }
+
+    &.left {
+      transform: rotateY(90deg);
+    }
+
+    &.right {
+      transform: rotateY(270deg);
+    }
+
+    &.top {
+      transform: rotateX(-90deg);
+    }
+
+    &.bottom {
+      transform: rotateX(90deg);
+    }
+
+    div {
+      &.front, &.back, &.left, &.right, &.top, &.bottom {
+        position: absolute;
+
+        width: 1.98em;
+        height: 1.98em;
+        border: .02em solid #333;
+        color: #fff;
+        line-height: 1.98em;
+        text-align: center;
+
+        transform-origin: center;
+      }
+
+      &.front {
+        transform: translateZ(1em);
+        background-color: rgba(44, 44, 44, .3);
+      }
+      &.back {
+        transform: rotateY(180deg) translateZ(1em);
+        background-color: rgba(55, 55, 55, .3);
+      }
+      &.left {
+        transform: rotateY(-90deg) translateZ(1em);
+        background-color: rgba(66, 66, 66, .3);
+      }
+      &.right {
+        transform: rotateY(90deg) translateZ(1em);
+        background-color: rgba(77, 77, 77, .3);
+      }
+      &.top {
+        transform: rotateX(90deg) translateZ(1em);
+        background-color: rgba(88, 88, 88, .3);
+      }
+      &.bottom {
+        transform: rotateX(-90deg) translateZ(1em);
+        background-color: rgba(99, 99, 99, .3);
+      }
+    }
+  }
+}

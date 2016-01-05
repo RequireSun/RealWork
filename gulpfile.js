@@ -12,6 +12,9 @@ var react = require('gulp-react'),
 var livereload = require('gulp-livereload'),
     liveServer = require('gulp-live-server');
 
+var sass = require('gulp-sass'),
+    autoprefixer = require('gulp-autoprefixer');
+
 var app = function (inPath) {
     return path.resolve('./app', inPath);
 }, dist = function (inPath) {
@@ -48,12 +51,25 @@ gulp.task('javascript', function () {
         .pipe(livereload());
 });
 
-gulp.task('watch', ['html', 'react', 'javascript'], function () {
+gulp.task('sass', function () {
+    gulp.src(app('styles/**/*.scss'))
+        .pipe(sass().on('error', sass.logError))
+        .pipe(autoprefixer({ browsers: ['last 2 versions', 'ie >= 8'] }))
+        .pipe(gulp.dest(dist('styles')));
+});
+
+gulp.task('copy', function () {
+    gulp.src(app('images/**/*.*'))
+        .pipe(gulp.dest(dist('images')));
+})
+
+gulp.task('watch', ['html', 'react', 'javascript', 'sass'], function () {
     livereload.listen();
 
     gulp.watch(app('**/*.html'), ['html']);
     gulp.watch(app('scripts/**/*.jsx'), ['react']);
     gulp.watch(app('scripts/**/*.js'), ['javascript']);
+    gulp.watch(app('styles/**/*.scss'), ['sass']);
 
     var server = liveServer.static('dist', 3000);
     server.start();
