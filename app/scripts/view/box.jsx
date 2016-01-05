@@ -10,7 +10,7 @@ define(['react'], function (React) {
         }
         changeActive () {
             this.setState({
-                active: this.state.active + 1
+                active: this.state.active + 1 % this.state.classes.length
             });
         }
         render () {
@@ -18,19 +18,19 @@ define(['react'], function (React) {
                 <div className='stage'>
                     <div onClick={this.changeActive.bind(this)}
                          className={'hexahedron ' + this.state.classes[this.state.active % this.state.classes.length]}>
-                        <div className="front">a</div>
-                        <div className="back">b</div>
-                        <div className="left">c</div>
-                        <div className="right">d</div>
-                        <div className="top">e</div>
-                        <div className="bottom">f</div>
+                        <div className="front">我</div>
+                        <div className="back">爱</div>
+                        <div className="left">你</div>
+                        <div className="right">李</div>
+                        <div className="top">漂</div>
+                        <div className="bottom">亮</div>
                     </div>
                 </div>
             );
         }
     }
     Box.propTypes = { active: React.PropTypes.string };
-    Box.defaultProps = { active: 0, classes: ['front', 'back', 'left', 'right', 'top', 'bottom'] };
+    Box.defaultProps = { active: 0, classes: ['front', 'left', 'back', 'right', 'top', 'bottom'] };
 
     return Box;
 });

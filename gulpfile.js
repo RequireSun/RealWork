@@ -55,12 +55,14 @@ gulp.task('sass', function () {
     gulp.src(app('styles/**/*.scss'))
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer({ browsers: ['last 2 versions', 'ie >= 8'] }))
-        .pipe(gulp.dest(dist('styles')));
+        .pipe(gulp.dest(dist('styles')))
+        .pipe(livereload());
 });
 
 gulp.task('copy', function () {
     gulp.src(app('images/**/*.*'))
-        .pipe(gulp.dest(dist('images')));
+        .pipe(gulp.dest(dist('images')))
+        .pipe(livereload());
 })
 
 gulp.task('watch', ['html', 'react', 'javascript', 'sass'], function () {
