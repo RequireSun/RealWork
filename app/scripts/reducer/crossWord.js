@@ -14,6 +14,12 @@ define(['immutable'], Immutable =>
             case 'SET_ITEM':
                 return state.update('itemList', () =>
                     Immutable.List(action.items));
+            case 'SET_SENTENCE':
+                return state.update('sentenceList', () =>
+                    Immutable.List(action.sentence));
+            case 'SET_BLANK':
+                return state.update('blankList', () =>
+                    Immutable.fromJS(action.blank));
             default:
                 return state;
         }

@@ -1,0 +1,43 @@
+.crossword {
+  font-size: 0.14em;
+
+  ul {
+    margin: .15rem .3rem;
+    padding: 0;
+
+    &>li {
+      display: inline-block;
+      list-style: none;
+    }
+  }
+
+  .sentence {
+    li {
+      width: .3rem;
+      height: .3rem;
+
+      text-align: center;
+      line-height: .3rem;
+    }
+
+    li.blank {
+      margin: .08rem;
+
+      border: .01rem solid #000;
+    }
+  }
+
+  .choose {
+    li {
+      margin: .08rem;
+
+      width: .3rem;
+      height: .3rem;
+
+      border: .01rem solid #000;
+
+      text-align: center;
+      line-height: .3rem;
+    }
+  }
+}
