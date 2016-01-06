@@ -18,12 +18,12 @@ define(['react'], function (React) {
                 <div className='stage'>
                     <div onClick={this.changeActive.bind(this)}
                          className={'hexahedron ' + this.state.classes[this.state.active % this.state.classes.length]}>
-                        <div className="front">我</div>
-                        <div className="back">爱</div>
-                        <div className="left">你</div>
-                        <div className="right">李</div>
-                        <div className="top">漂</div>
-                        <div className="bottom">亮</div>
+                        <div className="front">A</div>
+                        <div className="back">B</div>
+                        <div className="left">C</div>
+                        <div className="right">D</div>
+                        <div className="top">E</div>
+                        <div className="bottom">F</div>
                     </div>
                 </div>
             );

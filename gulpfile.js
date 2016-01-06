@@ -41,6 +41,9 @@ gulp.task('javascript', function () {
         nodeModule('jquery/dist/jquery.js'),
         nodeModule('react/dist/react.js'),
         nodeModule('requirejs/require.js'),
+        nodeModule('redux/dist/redux.js'),
+        nodeModule('immutable/dist/immutable.js'),
+        nodeModule('react-redux/dist/react-redux.js'),
     ])
         .pipe(gulp.dest(dist('scripts/lib')))
         .pipe(livereload());
@@ -63,15 +66,16 @@ gulp.task('copy', function () {
     gulp.src(app('images/**/*.*'))
         .pipe(gulp.dest(dist('images')))
         .pipe(livereload());
-})
+});
 
-gulp.task('watch', ['html', 'react', 'javascript', 'sass'], function () {
+gulp.task('watch', ['html', 'react', 'javascript', 'sass', 'copy'], function () {
     livereload.listen();
 
     gulp.watch(app('**/*.html'), ['html']);
     gulp.watch(app('scripts/**/*.jsx'), ['react']);
     gulp.watch(app('scripts/**/*.js'), ['javascript']);
     gulp.watch(app('styles/**/*.scss'), ['sass']);
+    gulp.watch(app('images/**/*.*'), ['copy']);
 
     var server = liveServer.static('dist', 3000);
     server.start();

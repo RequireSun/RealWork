@@ -19,20 +19,20 @@ html, body, #content, #content>div {
   width: 100%;
   height: 100%;
 
-  perspective: 4em;
+  perspective: 4rem;
 
   .hexahedron {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -1em 0 0 -1em;
+    margin: -1rem 0 0 -1rem;
 
-    width: 2em;
-    height: 2em;
+    width: 2rem;
+    height: 2rem;
 
-    transform: translateZ(-1em);
+    transform: translateZ(-1rem);
     transform-style: preserve-3d;
-    transform-origin: 1em 1em 0;    // 没时间计较那么多了 实在是不知道怎么算位置了
+    transform-origin: 1rem 1rem 0;    // 没时间计较那么多了 实在是不知道怎么算位置了
 
     transition-property: transform;
     transition-duration: 1s;
@@ -66,38 +66,38 @@ html, body, #content, #content>div {
       &.front, &.back, &.left, &.right, &.top, &.bottom {
         position: absolute;
 
-        width: 1.98em;
-        height: 1.98em;
-        border: .02em solid #333;
+        width: 1.98rem;
+        height: 1.98rem;
+        border: .02rem solid #333;
         color: #fff;
-        line-height: 1.98em;
+        line-height: 1.98rem;
         text-align: center;
 
         transform-origin: center;
       }
 
       &.front {
-        transform: translateZ(1em);
+        transform: translateZ(1rem);
         background-color: rgba(44, 44, 44, .3);
       }
       &.back {
-        transform: rotateY(180deg) translateZ(1em);
+        transform: rotateY(180deg) translateZ(1rem);
         background-color: rgba(55, 55, 55, .3);
       }
       &.left {
-        transform: rotateY(-90deg) translateZ(1em);
+        transform: rotateY(-90deg) translateZ(1rem);
         background-color: rgba(66, 66, 66, .3);
       }
       &.right {
-        transform: rotateY(90deg) translateZ(1em);
+        transform: rotateY(90deg) translateZ(1rem);
         background-color: rgba(77, 77, 77, .3);
       }
       &.top {
-        transform: rotateX(90deg) translateZ(1em);
+        transform: rotateX(90deg) translateZ(1rem);
         background-color: rgba(88, 88, 88, .3);
       }
       &.bottom {
-        transform: rotateX(-90deg) translateZ(1em);
+        transform: rotateX(-90deg) translateZ(1rem);
         background-color: rgba(99, 99, 99, .3);
       }
     }
