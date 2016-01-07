@@ -5,9 +5,10 @@
 define(['react', 'immutable'], function (React, Immutable) {
     class Word extends React.Component {
         render () {
-
-            return (this.props.isBlank ?
-                (<li className='blank'>{this.props.item}</li>) :
+            return (this.props.blankObject ?
+                (this.props.item ?
+                    (<li className='blank' onClick={this.props.onRemoveItem.bind(this, this.props.itemIndex)}>{this.props.item}</li>) :
+                    (<li className='blank'>&nbsp;</li>)) :
                 (<li>{this.props.item}</li>));
         }
     }
@@ -22,10 +23,17 @@ define(['react', 'immutable'], function (React, Immutable) {
                 <ul className='sentence'>
                     {this.props.list.map((item, index) =>
                         {
-                            let isBlank = blank.find(value => index === value.get('sentenceIndex'));
-                            let blankText = !!isBlank && (isBlank.get('itemIndex') || 0 === isBlank.get('itemIndex')) ?
-                                this.props.item.get(isBlank.get('itemIndex')) : '';
-                            return <Word item={!!isBlank ? blankText : item} index={index} key={index} isBlank={!!isBlank} />;
+                            let blankObject = blank.find(value => index === value.get('sentenceIndex'));
+                            let blankText, itemIndex;
+                            if (!!blankObject) {
+                                itemIndex = blankObject.get('itemIndex');
+                                blankText = this.props.item.get(itemIndex);
+                            } else {
+                                itemIndex = undefined;
+                                blankText = '';
+                            }
+                            return <Word onRemoveItem={this.props.onRemoveItem} item={!!blankObject ? blankText : item}
+                                         index={index} key={index} blankObject={blankObject} itemIndex={itemIndex}/>;
                         }
                     )}
                 </ul>
@@ -40,9 +48,9 @@ define(['react', 'immutable'], function (React, Immutable) {
 
     class ChooseItem extends React.Component {
         render () {
-            return (
-                <li onClick={this.props.onChooseItem.bind(this, this.props.index)}>{this.props.item}</li>
-            );
+            return this.props.item.get('availability') ?
+                (<li onClick={this.props.onChooseItem.bind(this, this.props.index)}>{this.props.item.get('text')}</li>) :
+                (<li>&nbsp;</li>);
         }
     }
     ChooseItem.defaultProps = {
@@ -66,7 +74,8 @@ define(['react', 'immutable'], function (React, Immutable) {
         render () {
             return (
                 <div className='crossword'>
-                    <Sentence list={this.props.sentenceList} blank={this.props.blankList} item={this.props.itemList}/>
+                    <Sentence onRemoveItem={this.props.onRemoveItem} list={this.props.sentenceList}
+                              blank={this.props.blankList} item={this.props.itemList}/>
                     <Choose list={this.props.itemList} onChooseItem={this.props.onChooseItem}/>
                 </div>
             );

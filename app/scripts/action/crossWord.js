@@ -9,6 +9,12 @@ define([], () => {
                 index: index
             };
         },
+        removeItem: index => {
+            return {
+                type: 'REMOVE_ITEM',
+                index: index
+            };
+        },
         setItem: items => {
             return {
                 type: 'SET_ITEM',

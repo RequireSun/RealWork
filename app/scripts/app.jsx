@@ -29,17 +29,24 @@ requirejs([
 
     store.dispatch(ACrossword.setSentence([ '我', '帅', '不', '帅', '?', '帅', '!', '嗷', '嗷', '帅', '啊', '!' ]));
 
-    store.dispatch(ACrossword.setItem([ '帅', '帅', '帅', '帅', '帅',
-                                        '帅', '帅', '帅', '帅', '帅',
-                                        '帅', '帅', '帅', '帅', '帅',
-                                        '帅', '帅', '帅', '帅', '帅',
-                                        '帅', '帅', '帅', '帅', '帅' ]));
+    store.dispatch(ACrossword.setItem([ { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true },
+                                        { text: '帅', availability: true }, { text: '帅', availability: true } ]));
 
     store.dispatch(ACrossword.setBlank([ { sentenceIndex: 1 }, { sentenceIndex: 3 }, { sentenceIndex: 5 } ]));
 
     class App extends React.Component {
         render () {
-            const { crossword, onChooseItem } = this.props;
+            const { crossword, onChooseItem, onRemoveItem } = this.props;
             return (
                 <div>
                     {/*<VBox/>*/}
@@ -47,7 +54,8 @@ requirejs([
                         itemList={crossword.get('itemList')}
                         blankList={crossword.get('blankList')}
                         sentenceList={crossword.get('sentenceList')}
-                        onChooseItem={onChooseItem}/>
+                        onChooseItem={onChooseItem}
+                        onRemoveItem={onRemoveItem}/>
                 </div>
             );
         }
@@ -60,7 +68,8 @@ requirejs([
     }
     function mapDispatchToProps(dispatch) {
         return {
-            onChooseItem: () => dispatch(ACrossword.chooseItem())
+            onChooseItem: (index) => dispatch(ACrossword.chooseItem(index)),
+            onRemoveItem: (index) => dispatch(ACrossword.removeItem(index))
         };
     }
     let ConnectComponent = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(App);
