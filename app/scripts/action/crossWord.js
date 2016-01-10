@@ -32,6 +32,11 @@ define([], () => {
                 type: 'SET_BLANK',
                 blank: blank
             };
+        },
+        initialized: () => {
+            return {
+                type: 'INITIALIZED'
+            };
         }
     };
 });

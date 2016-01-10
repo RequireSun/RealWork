@@ -9,6 +9,7 @@ requirejs.config({
         action: '../action',
         view: '../view',
         reducer: '../reducer',
+        middleware: '../middleware',
         root: '..'
     }
 });
@@ -20,10 +21,12 @@ requirejs([
     'view/box',
     'view/crossword',
     'reducer/crossword',
-    'action/crossword'
-], function (React, Redux, ReactRedux, VBox, VCrossword, RCrossword, ACrossword) {
+    'action/crossword',
+    'middleware/crossword'
+], function (React, Redux, ReactRedux, VBox, VCrossword, RCrossword, ACrossword, MCrossword) {
     let Provider = ReactRedux.Provider;
-    let store = Redux.createStore(Redux.combineReducers({ crossword: RCrossword }));
+    let createStoreWithMiddleware = Redux.applyMiddleware(MCrossword)(Redux.createStore)
+    let store = createStoreWithMiddleware(Redux.combineReducers({ crossword: RCrossword }));
 
     window.store = store;
 
@@ -43,6 +46,8 @@ requirejs([
                                         { text: '帅', availability: true }, { text: '帅', availability: true } ]));
 
     store.dispatch(ACrossword.setBlank([ { sentenceIndex: 1 }, { sentenceIndex: 3 }, { sentenceIndex: 5 } ]));
+
+    store.dispatch(ACrossword.initialized());
 
     class App extends React.Component {
         render () {

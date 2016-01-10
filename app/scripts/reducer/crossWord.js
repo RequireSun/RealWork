@@ -2,7 +2,8 @@ define(['immutable'], Immutable =>
     (state = Immutable.Map({
         itemList: Immutable.List(),
         blankList: Immutable.List(),
-        sentenceList: Immutable.List()
+        sentenceList: Immutable.List(),
+        initialized: false
     }), action) => {
         let index;          // 全局变量, 用于缓存查找用的 key 变量
         switch (action.type) {
@@ -45,6 +46,8 @@ define(['immutable'], Immutable =>
             case 'SET_BLANK':
                 return state.update('blankList', () =>
                     Immutable.fromJS(action.blank));
+            case 'INITIALIZED':
+                return state.update('initialized', () => true);
             default:
                 return state;
         }
