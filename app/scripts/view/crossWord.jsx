@@ -13,7 +13,9 @@ define(['react', 'immutable'], function (React, Immutable) {
         }
     }
     Word.defaultProps = {
-        item: ''
+        item: '',
+        blankObject: false,
+        itemIndex: undefined
     };
 
     class Sentence extends React.Component {

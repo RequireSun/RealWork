@@ -10,6 +10,7 @@ requirejs.config({
         view: '../view',
         reducer: '../reducer',
         middleware: '../middleware',
+        application: '../application',
         root: '..'
     }
 });
@@ -18,36 +19,26 @@ requirejs([
     'react',
     'redux',
     'react-redux',
+    'root/store',
+    'application/crossword',
     'view/box',
     'view/crossword',
-    'reducer/crossword',
     'action/crossword',
-    'middleware/crossword'
-], function (React, Redux, ReactRedux, VBox, VCrossword, RCrossword, ACrossword, MCrossword) {
+    'view/cloze',
+], function (
+    React,
+    Redux,
+    ReactRedux,
+    store,
+    AppCrossword,
+    VBox,
+    VCrossword,
+    ACrossword,
+    VCloze
+) {
     let Provider = ReactRedux.Provider;
-    let createStoreWithMiddleware = Redux.applyMiddleware(MCrossword)(Redux.createStore)
-    let store = createStoreWithMiddleware(Redux.combineReducers({ crossword: RCrossword }));
 
-    window.store = store;
-
-    store.dispatch(ACrossword.setSentence([ '我', '帅', '不', '帅', '?', '帅', '!', '嗷', '嗷', '帅', '啊', '!' ]));
-
-    store.dispatch(ACrossword.setItem([ { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true },
-                                        { text: '帅', availability: true }, { text: '帅', availability: true } ]));
-
-    store.dispatch(ACrossword.setBlank([ { sentenceIndex: 1 }, { sentenceIndex: 3 }, { sentenceIndex: 5 } ]));
-
-    store.dispatch(ACrossword.initialized());
+    AppCrossword();
 
     class App extends React.Component {
         render () {
@@ -55,12 +46,13 @@ requirejs([
             return (
                 <div>
                     {/*<VBox/>*/}
-                    <VCrossword
+                    {/*<VCrossword
                         itemList={crossword.get('itemList')}
                         blankList={crossword.get('blankList')}
                         sentenceList={crossword.get('sentenceList')}
                         onChooseItem={onChooseItem}
-                        onRemoveItem={onRemoveItem}/>
+                        onRemoveItem={onRemoveItem}/>*/}
+                    <VCloze/>
                 </div>
             );
         }
