@@ -7,9 +7,11 @@ define([
     'middleware/crossword',
     'reducer/cloze',
     'middleware/cloze',
-], function (Redux, RCrossword, MCrossword, RCloze, MCloze) {
-    let createStoreWithMiddleware = Redux.applyMiddleware(MCrossword, MCloze)(Redux.createStore);
-    let store = createStoreWithMiddleware(Redux.combineReducers({ crossword: RCrossword, cloze: RCloze }));
+    'reducer/reorder',
+    'middleware/reorder',
+], function (Redux, RCrossword, MCrossword, RCloze, MCloze, RReorder, MReorder) {
+    let createStoreWithMiddleware = Redux.applyMiddleware(MReorder, MCloze, MCrossword)(Redux.createStore);
+    let store = createStoreWithMiddleware(Redux.combineReducers({ reorder: RReorder, cloze: RCloze, crossword: RCrossword }));
 
     window.store = store;
 

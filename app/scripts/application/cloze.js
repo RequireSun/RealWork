@@ -14,4 +14,4 @@ define([
     ]));
 
     store.dispatch(ACloze.initialized());
-})
+});

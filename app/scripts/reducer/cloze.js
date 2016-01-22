@@ -3,7 +3,8 @@
  */
 define(['immutable'], Immutable =>
     (state = Immutable.Map({
-        list: Immutable.List()
+        sentenceList: Immutable.List(),
+        blankList: Immutable.List(),
     }), action) => {
         switch (action.type) {
             case 'CLOZE_CHOOSE_ITEM':
