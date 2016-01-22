@@ -40,6 +40,8 @@ gulp.task('javascript', function () {
     gulp.src([
         nodeModule('jquery/dist/jquery.js'),
         nodeModule('react/dist/react.js'),
+        nodeModule('react-dom/dist/react-dom.js'),
+        nodeModule('react-router/umd/ReactRouter.js'),
         nodeModule('requirejs/require.js'),
         nodeModule('redux/dist/redux.js'),
         nodeModule('immutable/dist/immutable.js'),

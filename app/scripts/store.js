@@ -5,9 +5,10 @@ define([
     'redux',
     'reducer/crossword',
     'middleware/crossword',
-], function (Redux, RCrossword, MCrossword) {
+    'reducer/cloze',
+], function (Redux, RCrossword, MCrossword, RCloze) {
     let createStoreWithMiddleware = Redux.applyMiddleware(MCrossword)(Redux.createStore);
-    let store = createStoreWithMiddleware(Redux.combineReducers({ crossword: RCrossword }));
+    let store = createStoreWithMiddleware(Redux.combineReducers({ crossword: RCrossword, cloze: RCloze }));
 
     window.store = store;
 

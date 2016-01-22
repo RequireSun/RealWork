@@ -23,21 +23,19 @@ define(['react', 'immutable'], function (React, Immutable) {
             let blank = this.props.blank;
             return (
                 <ul className='sentence'>
-                    {this.props.list.map((item, index) =>
-                        {
-                            let blankObject = blank.find(value => index === value.get('sentenceIndex'));
-                            let blankText, itemIndex;
-                            if (!!blankObject) {
-                                itemIndex = blankObject.get('itemIndex');
-                                blankText = this.props.item.get(itemIndex);
-                            } else {
-                                itemIndex = undefined;
-                                blankText = '';
-                            }
-                            return <Word onRemoveItem={this.props.onRemoveItem} item={!!blankObject ? blankText : item}
-                                         index={index} key={index} blankObject={blankObject} itemIndex={itemIndex}/>;
+                    {this.props.list.map((item, index) => {
+                        let blankObject = blank.find(value => index === value.get('sentenceIndex'));
+                        let blankText, itemIndex;
+                        if (!!blankObject) {
+                            itemIndex = blankObject.get('itemIndex');
+                            blankText = this.props.item.get(itemIndex);
+                        } else {
+                            itemIndex = undefined;
+                            blankText = '';
                         }
-                    )}
+                        return <Word onRemoveItem={this.props.onRemoveItem} item={!!blankObject ? blankText : item}
+                                     index={index} key={index} blankObject={blankObject} itemIndex={itemIndex}/>;
+                    })}
                 </ul>
             );
         }

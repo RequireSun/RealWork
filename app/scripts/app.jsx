@@ -17,32 +17,40 @@ requirejs.config({
 
 requirejs([
     'react',
+    'react-dom',
     'redux',
     'react-redux',
     'root/store',
     'application/crossword',
+    'application/cloze',
     'view/box',
     'view/crossword',
     'action/crossword',
     'view/cloze',
+    'action/cloze',
 ], function (
     React,
+    ReactDOM,
     Redux,
     ReactRedux,
     store,
     AppCrossword,
+    AppCloze,
     VBox,
     VCrossword,
     ACrossword,
-    VCloze
+    VCloze,
+    ACloze
 ) {
     let Provider = ReactRedux.Provider;
 
     AppCrossword();
+    AppCloze();
 
     class App extends React.Component {
         render () {
-            const { crossword, onChooseItem, onRemoveItem } = this.props;
+            //const { crossword, onChooseItem, onRemoveItem } = this.props;
+            const { cloze } = this.props;
             return (
                 <div>
                     {/*<VBox/>*/}
@@ -52,7 +60,9 @@ requirejs([
                         sentenceList={crossword.get('sentenceList')}
                         onChooseItem={onChooseItem}
                         onRemoveItem={onRemoveItem}/>*/}
-                    <VCloze/>
+                    <VCloze
+                        sentenceList={cloze.get('sentenceList')}
+                        blankList={cloze.get('blankList')}/>
                 </div>
             );
         }
@@ -60,18 +70,19 @@ requirejs([
 
     function mapStateToProps(state) {
         return {
-            crossword: state.crossword
+            crossword: state.crossword,
+            cloze: state.cloze,
         };
     }
     function mapDispatchToProps(dispatch) {
         return {
             onChooseItem: (index) => dispatch(ACrossword.chooseItem(index)),
-            onRemoveItem: (index) => dispatch(ACrossword.removeItem(index))
+            onRemoveItem: (index) => dispatch(ACrossword.removeItem(index)),
         };
     }
     let ConnectComponent = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(App);
 
-    React.render(
+    ReactDOM.render(
         <Provider store={store}>
             <ConnectComponent/>
         </Provider>,

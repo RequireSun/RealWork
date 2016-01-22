@@ -1,0 +1,26 @@
+.cloze {
+  font-size: .14rem;
+
+  ul {
+    margin: .5rem .3rem;
+    padding: 0;
+
+    &>li {
+      display: inline-block;
+
+      width: .3rem;
+      height: .3rem;
+
+      list-style: none;
+
+      text-align: center;
+      line-height: .3rem;
+
+      &.blank {
+        margin: .08rem;
+
+        border: .01rem solid #000;
+      }
+    }
+  }
+}
