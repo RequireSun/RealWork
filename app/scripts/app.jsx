@@ -50,7 +50,7 @@ requirejs([
     class App extends React.Component {
         render () {
             //const { crossword, onChooseItem, onRemoveItem } = this.props;
-            const { cloze } = this.props;
+            const { cloze, onClozeChooseItem } = this.props;
             return (
                 <div>
                     {/*<VBox/>*/}
@@ -62,7 +62,8 @@ requirejs([
                         onRemoveItem={onRemoveItem}/>*/}
                     <VCloze
                         sentenceList={cloze.get('sentenceList')}
-                        blankList={cloze.get('blankList')}/>
+                        blankList={cloze.get('blankList')}
+                        onChooseItem={onClozeChooseItem}/>
                 </div>
             );
         }
@@ -78,6 +79,7 @@ requirejs([
         return {
             onChooseItem: (index) => dispatch(ACrossword.chooseItem(index)),
             onRemoveItem: (index) => dispatch(ACrossword.removeItem(index)),
+            onClozeChooseItem: (index) => dispatch(ACloze.chooseItem(index)),
         };
     }
     let ConnectComponent = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(App);

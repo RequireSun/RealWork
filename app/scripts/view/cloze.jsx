@@ -5,7 +5,7 @@ define(['react', 'immutable'], function (React, Immutable) {
     class ArticleItem extends React.Component {
         render () {
             return this.props.blankObject ?
-                (<li className='blank'>{this.props.item}</li>) :
+                (<li className='blank' onClick={this.props.onChooseItem.bind(this, this.props.index)}>{this.props.item}</li>) :
                 (<li>{this.props.item}</li>);
         }
     }
@@ -24,8 +24,8 @@ define(['react', 'immutable'], function (React, Immutable) {
                             blankChoice = undefined;
                             blankText = '';
                         }
-                        return <ArticleItem item={!!blankObject ? blankText : item} index={index} key={index}
-                                            blankObject={blankObject} choiceIndex={blankChoice}/>;
+                        return <ArticleItem onChooseItem={this.props.onChooseItem} item={!!blankObject ? blankText : item}
+                                            index={index} key={index} blankObject={blankObject} choiceIndex={blankChoice}/>;
                     })}
                 </ul>
             );
@@ -40,7 +40,7 @@ define(['react', 'immutable'], function (React, Immutable) {
         render () {
             return (
                 <div className='cloze'>
-                    <Article list={this.props.sentenceList} blank={this.props.blankList}/>
+                    <Article list={this.props.sentenceList} blank={this.props.blankList} onChooseItem={this.props.onChooseItem}/>
                 </div>
             );
         }
