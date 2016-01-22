@@ -6,7 +6,7 @@ define(['immutable'], Immutable =>
         list: Immutable.List()
     }), action) => {
         switch (action.type) {
-            case 'CHOOSE_ITEM':
+            case 'CLOZE_CHOOSE_ITEM':
                 return state.update('blankList', value => {
                     let tarBlankIndex = value.findIndex(value => action.index === value.get('sentenceIndex'));
                     if (-1 !== tarBlankIndex) {
@@ -17,13 +17,13 @@ define(['immutable'], Immutable =>
                         return value;
                     }
                 });
-            case 'SET_SENTENCE':
+            case 'CLOZE_SET_SENTENCE':
                 return state.update('sentenceList', () =>
                     Immutable.List(action.sentence));
-            case 'SET_BLANK':
+            case 'CLOZE_SET_BLANK':
                 return state.update('blankList', () =>
                     Immutable.fromJS(action.blank));
-            case 'INITIALIZED':
+            case 'CLOZE_INITIALIZED':
                 return state.update('initialized', () => true);
             default:
                 return state;

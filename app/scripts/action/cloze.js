@@ -3,18 +3,18 @@
  */
 define([], () => ({
     chooseItem: index => ({
-        type: 'CHOOSE_ITEM',
+        type: 'CLOZE_CHOOSE_ITEM',
         index: index,
     }),
     setSentence: sentence => ({
-        type: 'SET_SENTENCE',
+        type: 'CLOZE_SET_SENTENCE',
         sentence: sentence,
     }),
     setBlank: blank => ({
-        type: 'SET_BLANK',
+        type: 'CLOZE_SET_BLANK',
         blank: blank,
     }),
     initialized: () => ({
-        type: 'INITIALIZED',
+        type: 'CLOZE_INITIALIZED',
     }),
 }));

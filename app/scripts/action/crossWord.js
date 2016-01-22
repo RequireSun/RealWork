@@ -5,37 +5,37 @@ define([], () => {
     return {
         chooseItem: index => {
             return {
-                type: 'CHOOSE_ITEM',
+                type: 'CROSSWORD_CHOOSE_ITEM',
                 index: index
             };
         },
         removeItem: index => {
             return {
-                type: 'REMOVE_ITEM',
+                type: 'CROSSWORD_REMOVE_ITEM',
                 index: index
             };
         },
         setItem: items => {
             return {
-                type: 'SET_ITEM',
+                type: 'CROSSWORD_SET_ITEM',
                 items: items
             };
         },
         setSentence: sentence => {
             return {
-                type: 'SET_SENTENCE',
+                type: 'CROSSWORD_SET_SENTENCE',
                 sentence: sentence
             };
         },
         setBlank: blank => {
             return {
-                type: 'SET_BLANK',
+                type: 'CROSSWORD_SET_BLANK',
                 blank: blank
             };
         },
         initialized: () => {
             return {
-                type: 'INITIALIZED'
+                type: 'CROSSWORD_INITIALIZED'
             };
         }
     };
