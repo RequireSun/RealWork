@@ -46,6 +46,7 @@ gulp.task('javascript', function () {
         nodeModule('redux/dist/redux.js'),
         nodeModule('immutable/dist/immutable.js'),
         nodeModule('react-redux/dist/react-redux.js'),
+        nodeModule('react-router/umd/ReactRouter.js'),
     ])
         .pipe(gulp.dest(dist('scripts/lib')))
         .pipe(livereload());

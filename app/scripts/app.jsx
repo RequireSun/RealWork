@@ -20,6 +20,7 @@ requirejs([
     'react-dom',
     'redux',
     'react-redux',
+    'ReactRouter',
     'root/store',
     'view/box',
     'view/crossword',
@@ -31,11 +32,13 @@ requirejs([
     'view/reorder',
     'action/reorder',
     'application/reorder',
+    'root/router',
 ], function (
     React,
     ReactDOM,
     Redux,
     ReactRedux,
+    ReactRouter,
     store,
     VBox,
     VCrossword,
@@ -46,7 +49,8 @@ requirejs([
     AppCloze,
     VReorder,
     AReorder,
-    AppReorder
+    AppReorder,
+    Router
 ) {
     let Provider = ReactRedux.Provider;
 
@@ -99,7 +103,9 @@ requirejs([
 
     ReactDOM.render(
         <Provider store={store}>
-            <ConnectComponent/>
+            {/*<ConnectComponent/>*/}
+            {Router}
         </Provider>,
-        document.getElementById('content'));
+        document.getElementById('content')
+    );
 });

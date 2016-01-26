@@ -11,6 +11,9 @@ define(['react', 'immutable'], (React, Immutable) => {
     }
 
     class Reorder extends React.Component {
+        constructor (props) {
+            super(props);
+        }
         render () {
             return (
                 <div className='reorder'>
@@ -24,6 +27,7 @@ define(['react', 'immutable'], (React, Immutable) => {
             );
         }
     }
+    Reorder.defaultProps = { sentenceList: Immutable.List() };
 
     return Reorder;
 });

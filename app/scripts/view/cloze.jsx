@@ -1,7 +1,7 @@
 /**
  * Created by KelvinSen on 2016/1/10.
  */
-define(['react', 'immutable'], function (React, Immutable) {
+define(['react', 'immutable'], (React, Immutable) => {
     class ClozeItem extends React.Component {
         render () {
             return this.props.blankObject ?
@@ -11,6 +11,9 @@ define(['react', 'immutable'], function (React, Immutable) {
     }
 
     class Cloze extends React.Component {
+        constructor (props) {
+            super(props);
+        }
         render () {
             return (
                 <div className='cloze'>
@@ -33,5 +36,6 @@ define(['react', 'immutable'], function (React, Immutable) {
             );
         }
     }
+    Cloze.defaultProps = { sentenceList: Immutable.List() };
     return Cloze;
 });

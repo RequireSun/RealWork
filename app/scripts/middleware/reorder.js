@@ -12,7 +12,7 @@ define(['immutable'], Immutable =>
             valueA.get('correctIndex') - valueB.get('correctIndex')
         ), sentenceList);
         //isWin && store.dispatch({ type: 'VICTORY' });
-        console.log(isWin);
+        //console.log(isWin);
 
         return result;
     }

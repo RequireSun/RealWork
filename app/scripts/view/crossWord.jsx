@@ -2,7 +2,7 @@
  * Created by kelvinsun on 2016/1/6.
  */
 'use strict';
-define(['react', 'immutable'], function (React, Immutable) {
+define(['react', 'immutable'], (React, Immutable) => {
     class Word extends React.Component {
         render () {
             return (this.props.blankObject ?
@@ -71,6 +71,9 @@ define(['react', 'immutable'], function (React, Immutable) {
     };
 
     class Crossword extends React.Component {
+        constructor (props) {
+            super(props);
+        }
         render () {
             return (
                 <div className='crossword'>
