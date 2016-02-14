@@ -58,31 +58,31 @@ requirejs([
     AppCloze();
     AppReorder();
 
-    class App extends React.Component {
-        render () {
-            const { reorder, onReorderChooseItem } = this.props;
-            //const { cloze, onClozeChooseItem } = this.props;
-            //const { crossword, onChooseItem, onRemoveItem } = this.props;
-            return (
-                <div>
-                    {/*<VBox/>*/}
-                    <VReorder sentenceList={reorder.get('sentenceList')}
-                              choiceItem={reorder.get('choiceItem')}
-                              onChooseItem={onReorderChooseItem}/>
-                    {/*<VCloze
-                     sentenceList={cloze.get('sentenceList')}
-                     blankList={cloze.get('blankList')}
-                     onChooseItem={onClozeChooseItem}/>*/}
-                    {/*<VCrossword
-                        itemList={crossword.get('itemList')}
-                        blankList={crossword.get('blankList')}
-                        sentenceList={crossword.get('sentenceList')}
-                        onChooseItem={onChooseItem}
-                        onRemoveItem={onRemoveItem}/>*/}
-                </div>
-            );
-        }
-    }
+    //class App extends React.Component {
+    //    render () {
+    //        const { reorder, onReorderChooseItem } = this.props;
+    //        //const { cloze, onClozeChooseItem } = this.props;
+    //        //const { crossword, onChooseItem, onRemoveItem } = this.props;
+    //        return (
+    //            <div>
+    //                {/*<VBox/>*/}
+    //                <VReorder sentenceList={reorder.get('sentenceList')}
+    //                          choiceItem={reorder.get('choiceItem')}
+    //                          onChooseItem={onReorderChooseItem}/>
+    //                {/*<VCloze
+    //                 sentenceList={cloze.get('sentenceList')}
+    //                 blankList={cloze.get('blankList')}
+    //                 onChooseItem={onClozeChooseItem}/>*/}
+    //                {/*<VCrossword
+    //                    itemList={crossword.get('itemList')}
+    //                    blankList={crossword.get('blankList')}
+    //                    sentenceList={crossword.get('sentenceList')}
+    //                    onChooseItem={onChooseItem}
+    //                    onRemoveItem={onRemoveItem}/>*/}
+    //            </div>
+    //        );
+    //    }
+    //}
 
     function mapStateToProps(state) {
         return {
@@ -95,16 +95,15 @@ requirejs([
         return {
             onReorderChooseItem: (index) => dispatch(AReorder.chooseItem(index)),
             onClozeChooseItem: (index) => dispatch(ACloze.chooseItem(index)),
-            onChooseItem: (index) => dispatch(ACrossword.chooseItem(index)),
-            onRemoveItem: (index) => dispatch(ACrossword.removeItem(index)),
+            onCrosswordChooseItem: (index) => dispatch(ACrossword.chooseItem(index)),
+            onCrosswordRemoveItem: (index) => dispatch(ACrossword.removeItem(index)),
         };
     }
-    let ConnectComponent = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(App);
+    let ConnectComponent = ReactRedux.connect(mapStateToProps, mapDispatchToProps)(Router);
 
     ReactDOM.render(
         <Provider store={store}>
-            {/*<ConnectComponent/>*/}
-            {Router}
+            <ConnectComponent/>
         </Provider>,
         document.getElementById('content')
     );

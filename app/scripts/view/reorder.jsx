@@ -13,13 +13,24 @@ define(['react', 'immutable'], (React, Immutable) => {
     class Reorder extends React.Component {
         constructor (props) {
             super(props);
+            this.state = {
+                sentenceList: props.route.sentenceList,
+                choiceItem: props.route.choiceItem,
+            };
+            this.onChooseItem = props.route.onChooseItem;
+        }
+        componentWillReceiveProps (nextProps) {
+            this.setState({
+                sentenceList: nextProps.route.sentenceList,
+                choiceItem: nextProps.route.choiceItem,
+            });
         }
         render () {
             return (
                 <div className='reorder'>
                     <ul>
-                        {this.props.sentenceList.map((item, index) =>
-                            <ReorderItem onChooseItem={this.props.onChooseItem} active={index === this.props.choiceItem}
+                        {this.state.sentenceList.map((item, index) =>
+                            <ReorderItem onChooseItem={this.onChooseItem} active={index === this.state.choiceItem}
                                          item={item.get('sentence')} index={index} key={index}/>
                         )}
                     </ul>
@@ -27,7 +38,7 @@ define(['react', 'immutable'], (React, Immutable) => {
             );
         }
     }
-    Reorder.defaultProps = { sentenceList: Immutable.List() };
+    //Reorder.defaultProps = { sentenceList: Immutable.List() };
 
     return Reorder;
 });

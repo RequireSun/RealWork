@@ -10,7 +10,7 @@ define(['react'], React => {
                     <a href='#box' style={{ fontSize: 28 }}>Box</a>&nbsp;
                     <a href='#reorder' style={{ fontSize: 28 }}>Reorder</a>&nbsp;
                     <a href='#cloze' style={{ fontSize: 28 }}>Cloze</a>&nbsp;
-                    <a href='#crossword' style={{ fontSize: 28 }}>Crossword</a>
+                    {/*<a href='#crossword' style={{ fontSize: 28 }}>Crossword</a>*/}
                     {this.props.children}
                 </div>
             );

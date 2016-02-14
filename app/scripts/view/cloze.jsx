@@ -13,13 +13,24 @@ define(['react', 'immutable'], (React, Immutable) => {
     class Cloze extends React.Component {
         constructor (props) {
             super(props);
+            this.state = {
+                sentenceList: props.route.sentenceList,
+                blankList: props.route.blankList,
+            };
+            this.onChooseItem = props.route.onChooseItem;
+        }
+        componentWillReceiveProps (nextProps) {
+            this.setState({
+                sentenceList: nextProps.route.sentenceList,
+                blankList: nextProps.route.blankList,
+            });
         }
         render () {
             return (
                 <div className='cloze'>
                     <ul>
-                    {this.props.sentenceList.map((item, index) => {
-                        let blankObject = this.props.blankList.find(value => index === value.get('sentenceIndex'));
+                    {this.state.sentenceList.map((item, index) => {
+                        let blankObject = this.state.blankList.find(value => index === value.get('sentenceIndex'));
                         let blankChoice, blankText;
                         if (!!blankObject) {
                             blankChoice = blankObject.get('choiceIndex') || 0;
@@ -28,14 +39,15 @@ define(['react', 'immutable'], (React, Immutable) => {
                             blankChoice = undefined;
                             blankText = '';
                         }
-                        return <ClozeItem onChooseItem={this.props.onChooseItem} item={!!blankObject ? blankText : item}
-                            index={index} key={index} blankObject={blankObject} choiceIndex={blankChoice}/>;
+                        return <ClozeItem onChooseItem={this.onChooseItem} item={!!blankObject ? blankText : item}
+                                          index={index} key={index} blankObject={blankObject} choiceIndex={blankChoice}/>;
                     })}
                     </ul>
                 </div>
             );
         }
     }
-    Cloze.defaultProps = { sentenceList: Immutable.List() };
+    //Cloze.defaultProps = { sentenceList: Immutable.List() };
+
     return Cloze;
 });

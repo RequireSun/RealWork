@@ -29,7 +29,7 @@ define(['react'], function (React) {
             );
         }
     }
-    Box.propTypes = { active: React.PropTypes.string };
+    Box.propTypes = { active: React.PropTypes.number };
     Box.defaultProps = { active: 0, classes: ['front', 'left', 'back', 'right', 'top', 'bottom'] };
 
     return Box;
