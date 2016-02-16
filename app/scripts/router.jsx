@@ -57,18 +57,18 @@ define([
             }
         }
         render () {
-            let component, isVictory;
+            let component, victoryClass;
             switch (this.state.page) {
                 case 'box':
                     break;
                 case 'cloze':
-                    isVictory = this.state.cloze.get('victory');
+                    victoryClass = this.state.cloze.get('victory');
                     component = (<Cloze sentenceList={this.state.cloze.get('sentenceList')}
                                         blankList={this.state.cloze.get('blankList')}
                                         onChooseItem={this.state.onClozeChooseItem}/>);
                     break;
                 case 'crossword':
-                    isVictory = this.state.crossword.get('victory');
+                    victoryClass = this.state.crossword.get('victory');
                     component = (<Crossword itemList={this.state.crossword.get('itemList')}
                                             blankList={this.state.crossword.get('blankList')}
                                             sentenceList={this.state.crossword.get('sentenceList')}
@@ -77,14 +77,14 @@ define([
                     break;
                 case 'reorder':
                 default:
-                    isVictory = this.state.reorder.get('victory');
+                    victoryClass = this.state.reorder.get('victory');
                     component = (<Reorder time={Date.now()}
                                           sentenceList={this.state.reorder.get('sentenceList')}
                                           choiceItem={this.state.reorder.get('choiceItem')}
                                           onChooseItem={this.state.onReorderChooseItem}/>);
                     break;
             }
-            isVictory = { display: isVictory ? 'block' : 'none' };
+            victoryClass = victoryClass ? 'victory active' : 'victory';
             return (
                 <div>
                     {/*<a href='#reorder' style={{ fontSize: 20 }}>Reorder</a>&nbsp;
@@ -93,10 +93,9 @@ define([
                     <div className="game-sun"></div>
                     {component}
                     <div className='game-building'></div>
-                    <div className='victory' style={isVictory}>
-                        <p>恭喜你，你赢了！</p>
-                        <button onClick={this.changeHash.bind(this)}>进入下一关</button>
-                    </div>
+                    <dialog className={victoryClass}>
+                        <button onClick={this.changeHash.bind(this)}>看看还有啥</button>
+                    </dialog>
                 </div>
             );
             /*return (
