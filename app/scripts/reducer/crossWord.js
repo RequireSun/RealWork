@@ -3,7 +3,8 @@ define(['immutable'], Immutable =>
         itemList: Immutable.List(),
         blankList: Immutable.List(),
         sentenceList: Immutable.List(),
-        initialized: false
+        initialized: false,
+        victory: false,
     }), action) => {
         let index;          // 全局变量, 用于缓存查找用的 key 变量
         switch (action.type) {
@@ -48,6 +49,8 @@ define(['immutable'], Immutable =>
                     Immutable.fromJS(action.blank));
             case 'CROSSWORD_INITIALIZED':
                 return state.update('initialized', () => true);
+            case 'CROSSWORD_VICTORY':
+                return state.update('victory', () => true);
             default:
                 return state;
         }

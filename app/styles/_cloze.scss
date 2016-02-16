@@ -1,25 +1,33 @@
+@import 'variable_game.scss';
+
 .cloze {
-  font-size: .14rem;
+  padding: 1.5rem .2rem 0;
+
+  font-size: .3rem;
 
   ul {
-    margin: .5rem .3rem;
+    margin: 0;
     padding: 0;
 
     &>li {
       display: inline-block;
+      box-sizing: border-box;
 
-      width: .3rem;
-      height: .3rem;
+      width: .5rem;
+      height: .5rem;
 
       list-style: none;
 
+      color: $colorDarkBlue;
+      font-weight: 800;
       text-align: center;
-      line-height: .3rem;
+      line-height: .4rem;
 
       &.blank {
-        margin: .08rem;
+        margin: .08rem .04rem;
 
-        border: .01rem solid #000;
+        border: .03rem solid $colorLightBlue;
+        border-radius: .08rem;
       }
     }
   }

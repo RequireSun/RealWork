@@ -15,8 +15,8 @@ define([], () => {
             return (itemIndex || 0 === itemIndex) &&
                    (sentenceIndex || 0 === sentenceIndex) &&
                    itemList.get(itemIndex).get('text') === sentenceList.get(sentenceIndex);
-        }).every(value => value);
-        //isWin && store.dispatch({ type: 'VICTORY' });
+        }).every(value => value) && !state.get('victory');
+        isWin && store.dispatch({ type: 'CROSSWORD_VICTORY' });
 
         return result;
     }

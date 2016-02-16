@@ -14,9 +14,8 @@ define([], () =>
                     sentenceIndex = item.get('sentenceIndex');
                 return (sentenceIndex || 0 === sentenceIndex) &&
                     item.get('items').get(choiceIndex) === sentenceList.get(sentenceIndex);
-            }).every(value => value);
-        //isWin && store.dispatch({ type: 'VICTORY' });
-        //console.log(isWin);
+            }).every(value => value) && !state.get('victory');
+        isWin && store.dispatch({ type: 'CLOZE_VICTORY' });
 
         return result;
     }

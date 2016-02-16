@@ -1,5 +1,10 @@
+@import 'variable_game.scss';
+
 .crossword {
-  font-size: 0.14em;
+  padding: 1.5rem .2rem 0;
+
+  color: $colorDarkBlue;
+  font-size: 0.2em;
 
   ul {
     margin: .15rem .3rem;
@@ -12,30 +17,37 @@
   }
 
   .sentence {
+    font-size: 0.3rem;
+
     li {
-      width: .3rem;
-      height: .3rem;
+      width: .36rem;
+      height: .36rem;
 
       text-align: center;
-      line-height: .3rem;
+      line-height: .34rem;
     }
 
     li.blank {
-      margin: .08rem;
+      margin: .06rem;
 
-      border: .01rem solid #000;
+      border: .03rem solid $colorLightBlue;
+      border-radius: .04rem;
+
+      font-size: 0.26rem;
     }
   }
 
   .choose {
     li {
-      margin: .08rem;
+      margin: .04rem;
 
       width: .3rem;
       height: .3rem;
 
-      border: .01rem solid #000;
+      border: .03rem solid $colorLightBlue;
+      border-radius: .04rem;
 
+      color: $colorDarkBlue;
       text-align: center;
       line-height: .3rem;
     }

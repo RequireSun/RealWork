@@ -3,11 +3,13 @@ html {
   font-family: 'Microsoft Yahei', 'LiHei Pro Medium';
 }
 
-body {
-  background: url('../images/bg_block.jpg') repeat center center;
-}
+//body {
+//  background: url('../images/bg_block.jpg') repeat center center;
+//}
 
 html, body, #content, #content>div {
+  position: relative;
+
   margin: 0;
   padding: 0;
 
@@ -19,3 +21,4 @@ html, body, #content, #content>div {
 @import 'reorder.scss';
 @import 'cloze.scss';
 @import 'crossword.scss';
+@import 'game.scss';

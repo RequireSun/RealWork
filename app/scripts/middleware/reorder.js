@@ -10,9 +10,8 @@ define(['immutable'], Immutable =>
 
         let isWin = state.get('initialized') && Immutable.is(sentenceList.sort((valueA, valueB) =>
             valueA.get('correctIndex') - valueB.get('correctIndex')
-        ), sentenceList);
-        //isWin && store.dispatch({ type: 'VICTORY' });
-        //console.log(isWin);
+        ), sentenceList) && !state.get('victory');
+        isWin && store.dispatch({ type: 'REORDER_VICTORY' });
 
         return result;
     }

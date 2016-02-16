@@ -14,15 +14,15 @@ define(['react', 'immutable'], (React, Immutable) => {
         constructor (props) {
             super(props);
             this.state = {
-                sentenceList: props.route.sentenceList,
-                choiceItem: props.route.choiceItem,
+                sentenceList: props.sentenceList,
+                choiceItem: props.choiceItem,
             };
-            this.onChooseItem = props.route.onChooseItem;
+            this.onChooseItem = props.onChooseItem;
         }
         componentWillReceiveProps (nextProps) {
             this.setState({
-                sentenceList: nextProps.route.sentenceList,
-                choiceItem: nextProps.route.choiceItem,
+                sentenceList: nextProps.sentenceList,
+                choiceItem: nextProps.choiceItem,
             });
         }
         render () {

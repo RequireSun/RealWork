@@ -5,6 +5,7 @@ define(['immutable'], Immutable =>
     (state = Immutable.Map({
         sentenceList: Immutable.List(),
         choiceItem: undefined,
+        victory: false,
     }), action) => {
         switch (action.type) {
             case 'REORDER_CHOOSE_ITEM':
@@ -25,6 +26,8 @@ define(['immutable'], Immutable =>
                     Immutable.fromJS(action.sentence));
             case 'REORDER_INITIALIZED':
                 return state.update('initialized', () => true);
+            case 'REORDER_VICTORY':
+                return state.update('victory', () => true);
             default:
                 return state;
         }
