@@ -100,8 +100,18 @@ define([
                             <button onClick={this.changeHash.bind(this)}>看看还有啥</button>
                         </dialog>
                     </li>
-                    <li className={upCount > 1 ? 'up' : ''} style={{ zIndex: 2 }}>123</li>
-                    <li className={upCount > 2 ? 'up' : ''} style={{ zIndex: 1 }}>456</li>
+                    <li className={upCount > 1 ? 'up' : ''} style={{ zIndex: 2 }}>
+                        <img src='../../images/240x360.png' className='img-block img-md img-right'
+                            style={{ bottom: '10%', left: '50%', marginLeft: '-1.2rem' }}/>
+                        <img src='../../images/240x360.png' className='img-block img-sm img-left'
+                             style={{ top: '10%', right: '50%', marginRight: '-1.2rem' }}/>
+                    </li>
+                    <li className={upCount > 2 ? 'up' : ''} style={{ zIndex: 1 }}>
+                        <img src='../../images/240x360.png' className='img-block img-sm img-right'
+                            style={{ bottom: '10%', left: '50%', marginLeft: '-1.2rem' }}/>
+                        <img src='../../images/240x360.png' className='img-block img-md img-left'
+                            style={{ top: '10%', right: '50%', marginRight: '-1.2rem' }}/>
+                    </li>
                 </ul>
             );
             /*return (

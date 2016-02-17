@@ -1,0 +1,25 @@
+.img-block {
+  position: absolute;
+  box-sizing: border-box;
+
+  padding: .05rem;
+
+  border: .05rem solid #cee8da;
+  border-radius: .05rem;
+}
+
+.img-sm {
+  width: 1.6rem;
+}
+
+.img-md {
+  width: 2rem;
+}
+
+.img-left {
+  transform: rotate(30deg);
+}
+
+.img-right {
+  transform: rotate(-20deg);
+}
