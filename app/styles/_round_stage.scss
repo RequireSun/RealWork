@@ -1,0 +1,34 @@
+ul.round-stage {
+  position: relative;
+
+  margin: 0;
+  padding: 0;
+
+  width:100%;
+  height: 100%;
+
+  list-style: none;
+
+  &>li {
+    position: absolute;
+
+    top: 0;
+    margin: 0;
+    padding: 0;
+
+    width:100%;
+    height: 100%;
+
+    background: url('../images/game_background.png') repeat center center;
+
+    line-height: 0;
+
+    transition-property: top;
+    transition-timing-function: ease-in-out;
+    transition-duration: 1s;
+
+    &.up {
+      top: -100%;
+    }
+  }
+}

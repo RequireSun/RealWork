@@ -45,21 +45,26 @@ define([
         }
         changeHash () {
             switch (this.state.page) {
-                case 'reorder':
-                    location.hash = '#/cloze';
-                    break;
                 case 'cloze':
                     location.hash = '#/crossword';
                     break;
                 case 'crossword':
-                    location.hash = '#/box';
+                    location.hash = '#/page1';
+                    break;
+                case 'reorder':
+                default:
+                    location.hash = '#/cloze';
                     break;
             }
         }
         render () {
-            let component, victoryClass;
+            let component, victoryClass, upCount = 0;
             switch (this.state.page) {
-                case 'box':
+                case 'page1':
+                    upCount = 1;
+                    break;
+                case 'page2':
+                    upCount = 2;
                     break;
                 case 'cloze':
                     victoryClass = this.state.cloze.get('victory');
@@ -86,17 +91,18 @@ define([
             }
             victoryClass = victoryClass ? 'victory active' : 'victory';
             return (
-                <div>
-                    {/*<a href='#reorder' style={{ fontSize: 20 }}>Reorder</a>&nbsp;
-                    <a href='#cloze' style={{ fontSize: 20 }}>Cloze</a>&nbsp;
-                    <a href='#crossword' style={{ fontSize: 20 }}>Crossword</a>&nbsp;*/}
-                    <div className="game-sun"></div>
-                    {component}
-                    <div className='game-building'></div>
-                    <dialog className={victoryClass}>
-                        <button onClick={this.changeHash.bind(this)}>看看还有啥</button>
-                    </dialog>
-                </div>
+                <ul className='round-stage'>
+                    <li className={upCount > 0 ? 'up' : ''} style={{ zIndex: 3 }}>
+                        <div className="game-sun"></div>
+                        {component}
+                        <div className='game-building'></div>
+                        <dialog className={victoryClass}>
+                            <button onClick={this.changeHash.bind(this)}>看看还有啥</button>
+                        </dialog>
+                    </li>
+                    <li className={upCount > 1 ? 'up' : ''} style={{ zIndex: 2 }}>123</li>
+                    <li className={upCount > 2 ? 'up' : ''} style={{ zIndex: 1 }}>456</li>
+                </ul>
             );
             /*return (
                 <Router history={browserHistory}>
