@@ -52,6 +52,7 @@ requirejs([
     AppReorder,
     Router
 ) {
+    //React.initializeTouchEvents(true);
     let Provider = ReactRedux.Provider;
 
     AppCrossword();

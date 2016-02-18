@@ -57,6 +57,24 @@ define([
                     break;
             }
         }
+        touchStart (e) {
+            e.changedTouches[0] && (this.startPos = e.changedTouches[0].screenY);
+        }
+        touchEnd (e) {
+            if (e.changedTouches[0] && this.startPos) {
+                if (100 < e.changedTouches[0].screenY - this.startPos) {
+                    // 上一页
+                    if ('page2' === this.state.page) {
+                        location.hash = '#/page1';
+                    }
+                } else if (100 < this.startPos - e.changedTouches[0].screenY) {
+                    // 下一页
+                    if ('page1' === this.state.page) {
+                        location.hash = '#/page2';
+                    }
+                }
+            }
+        }
         render () {
             let component, victoryClass, upCount = 0;
             switch (this.state.page) {
@@ -100,17 +118,33 @@ define([
                             <button onClick={this.changeHash.bind(this)}>看看还有啥</button>
                         </dialog>
                     </li>
-                    <li className={upCount > 1 ? 'up' : ''} style={{ zIndex: 2 }}>
+                    <li className={upCount > 1 ? 'up' : ''} style={{ zIndex: 2 }}
+                        onTouchStart={this.touchStart.bind(this)} onTouchEnd={this.touchEnd.bind(this)}>
+                        <p className='text-block text-sm text-short text-left'
+                           style={{ top: '5%' }}>
+                            文字文字文字文字文字文字文字文字文字
+                        </p>
+                        <p className='text-block text-md text-short text-right'
+                            style={{ bottom: '12%', right: '5%' }}>
+                            文字文字文字文字文字文字文字文字文字
+                        </p>
                         <img src='../../images/240x360.png' className='img-block img-md img-right'
                             style={{ bottom: '10%', left: '50%', marginLeft: '-1.2rem' }}/>
                         <img src='../../images/240x360.png' className='img-block img-sm img-left'
                              style={{ top: '10%', right: '50%', marginRight: '-1.2rem' }}/>
+                        <div className='next-page'>
+                            <span></span>
+                        </div>
                     </li>
-                    <li className={upCount > 2 ? 'up' : ''} style={{ zIndex: 1 }}>
-                        <img src='../../images/240x360.png' className='img-block img-sm img-right'
+                    <li className={upCount > 2 ? 'up' : ''} style={{ zIndex: 1 }}
+                        onTouchStart={this.touchStart.bind(this)} onTouchEnd={this.touchEnd.bind(this)}>
+                        <img src='../../images/240x360.png' className='img-block img-sm img-left'
                             style={{ bottom: '10%', left: '50%', marginLeft: '-1.2rem' }}/>
-                        <img src='../../images/240x360.png' className='img-block img-md img-left'
+                        <img src='../../images/240x360.png' className='img-block img-md img-right'
                             style={{ top: '10%', right: '50%', marginRight: '-1.2rem' }}/>
+                        <div className='last-page'>
+                            <span></span>
+                        </div>
                     </li>
                 </ul>
             );
